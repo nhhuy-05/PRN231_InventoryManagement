@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "nE6+p1Mr9eXs2EDHLRzoFwZQyv8DTRVB0AZTycKYR3UjG06s1v9SAc7Y6nvhEQ5eV235J5XW+mqYaEPgTJ9sYg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Old\\FPT_Course\\8_Summer_2023\\PRN221_Retake\\Project\\PRN231_InventoryManagement\\API_InventoryManagement\\API_InventoryManagement\\API_InventoryManagement.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
