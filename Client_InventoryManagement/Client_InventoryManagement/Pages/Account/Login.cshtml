@@ -1,0 +1,104 @@
+﻿@page
+@model Client_InventoryManagement.Pages.Account.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="POS - Bootstrap Admin Template">
+    <meta name="keywords"
+          content="admin, estimates, bootstrap, business, corporate, creative, invoice, html5, responsive, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Login - Inventory System</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/logo-small.png">
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/style.css">
+</head>
+
+<body class="account-page">
+    <div class="main-wrapper">
+        <div class="account-content">
+            <div class="login-wrapper">
+                <div class="login-content">
+                    <div class="login-userset">
+                        <div class="login-logo">
+                            <img src="~/assets/img/logo.png" alt="img">
+                        </div>
+                        <div class="login-userheading">
+                            <h2 style="font-weight:bold">Login</h2>
+                        </div>
+                        @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                        {
+                            <div class="alert @((TempData["Message"] as string)?.Contains("successfully") == true ? "alert-success" : "alert-danger")">
+                                @TempData["Message"]
+                            </div>
+                        }
+                        <form method="post">
+                            <div class="form-login">
+                                <label>Email</label>
+                                <div class="form-addons">
+                                    <input type="text" name="email" placeholder="Enter your email address" required>
+                                    <img src="~/assets/img/icons/mail.svg" alt="img">
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <label>Password</label>
+                                <div class="pass-group">
+                                    <input type="password" class="pass-input" name="password" placeholder="Enter your password" required>
+                                    <span class="fas toggle-password fa-eye-slash"></span>
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <div class="alreadyuser">
+                                    <h4><a href="/Account/ForgotPassword" class="hover-a">Forgot Password?</a></h4>
+                                </div>
+                            </div>
+                            <div class="form-login">
+                                <button class="btn btn-login" type="submit"/>Login
+                            </div>
+                        </form>
+                        <div class="signinform text-center">
+                            <h4>Don’t have an account? <a href="/Account/Register" class="hover-a">Register</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-img">
+                    <img src="~/assets/img/login.jpg" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/feather.min.js"></script>
+
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/assets/js/script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                var alertDiv = document.querySelector('.alert');
+                if (alertDiv) {
+                    alertDiv.remove();
+                }
+            }, 1000);
+        });
+    </script>
+
+</body>
+
+</html>
