@@ -10,6 +10,8 @@ namespace MiniFapAPI.Mapper
         public AutoMapperProfile()
         {
             CreateMap<Customer, CustomerRequestDTO>().ReverseMap();
+            CreateMap<Product, ProductRequestDTO>().ReverseMap();
+            CreateMap<Supplier, SupplierRequestDTO>().ReverseMap();
             //CreateMap<Course, CourseDTO>().ReverseMap();
             //CreateMap<Schedule, ScheduleDTO>().ReverseMap();
             //CreateMap<Subject, SubjectDTO>().ReverseMap();
