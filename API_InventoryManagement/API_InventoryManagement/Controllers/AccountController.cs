@@ -1,5 +1,6 @@
 ﻿using API_InventoryManagement.Data;
 using API_InventoryManagement.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,7 @@ namespace API_InventoryManagement.Controllers
                 {
                     claims.Add(new Claim(ClaimTypes.Role, role));
                 }
-                claims.Add(new Claim(ClaimTypes.Name, login.Email));
+                claims.Add(new Claim(ClaimTypes.Name, user.FullName));
                 // add all roles of user to claims
 
                 await _userManager.AddClaimsAsync(user, claims);
@@ -69,6 +70,38 @@ namespace API_InventoryManagement.Controllers
             {
                 return BadRequest("Invalid login attempt.");
             }
+        }
+
+        // POST: api/Account/Register
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDTO register)
+        {
+            var user = new AppUser
+            {
+                UserName = register.Email,
+                Email = register.Email,
+                FullName = register.FullName
+            };
+            var result = await _userManager.CreateAsync(user, register.Password);
+            if (result.Succeeded)
+            {
+                // add role to user
+                await _userManager.AddToRoleAsync(user, "STAFF");
+                return Ok("Register success!");
+            }
+            else
+            {
+                return BadRequest(result.Errors);
+            }
+        }
+
+        // POST: api/Account/Logout
+        [Authorize]
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
         }
     }
 }
