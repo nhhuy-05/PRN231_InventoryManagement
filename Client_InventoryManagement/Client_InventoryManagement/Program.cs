@@ -8,6 +8,8 @@ namespace Client_InventoryManagement
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddHttpContextAccessor();
+
 
             var app = builder.Build();
 
@@ -27,6 +29,12 @@ namespace Client_InventoryManagement
             app.UseAuthorization();
 
             app.MapRazorPages();
+
+            app.MapGet("/", context =>
+            {
+                context.Response.Redirect("Index");
+                return Task.CompletedTask;
+            });
 
             app.Run();
         }
