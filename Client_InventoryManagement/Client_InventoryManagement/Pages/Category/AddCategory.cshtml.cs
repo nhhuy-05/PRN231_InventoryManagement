@@ -9,13 +9,6 @@ namespace Client_InventoryManagement.Pages.Category
 {
     public class AddCategoryModel : PageModel
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public AddCategoryModel(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
-
         public async Task<IActionResult> OnGet()
         {
             // get token from cookie
@@ -46,6 +39,7 @@ namespace Client_InventoryManagement.Pages.Category
 
         public async Task<IActionResult> OnPost(string categoryName, string description)
         {
+            
             if (categoryName == null || description == null)
             {
                 TempData["Message"] = "Please fill the data!";
@@ -53,13 +47,15 @@ namespace Client_InventoryManagement.Pages.Category
             }
             else
             {
-                CategoryService categoryService = new CategoryService(_httpContextAccessor);
+                CategoryService categoryService = new CategoryService();
                 var categoryRequestDTO = new CategoryRequestDTO
                 {
                     CategoryName = categoryName,
                     Description = description
                 };
-                var response = categoryService.AddCategory(categoryRequestDTO);
+                // get token from cookie
+                var jwtToken = Request.Cookies["jwtToken"];
+                var response = categoryService.AddCategory(categoryRequestDTO, jwtToken);
                 if (response == HttpStatusCode.OK)
                 {
                     TempData["Message"] = "Add category successfully";
