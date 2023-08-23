@@ -49,6 +49,21 @@ namespace Client_InventoryManagement.Services
             return responseMessage.StatusCode;
         }
 
+        public async Task<HttpStatusCode> PutData<T>(string url, T value, string? jwt = null, string? accepttype = null)
+        {
+            url = _rootUrl + url;
+            HttpClient client = new HttpClient();
+            if (jwt != null)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            }
+            var jsonStr = JsonSerializer.Serialize(value);
+
+            HttpContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await client.PutAsync(url, content);
+            return responseMessage.StatusCode;
+        }
+
         public async Task<string> PushDataGetString<T>(string url, T value, string? jwt = null, string? accepttype = null)
         {
             url = _rootUrl + url;
