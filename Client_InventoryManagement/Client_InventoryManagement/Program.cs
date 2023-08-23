@@ -22,6 +22,7 @@ namespace Client_InventoryManagement
             }
 
             app.UseHttpsRedirection();
+           // app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -29,12 +30,6 @@ namespace Client_InventoryManagement
             app.UseAuthorization();
 
             app.MapRazorPages();
-
-            app.MapGet("/", context =>
-            {
-                context.Response.Redirect("Index");
-                return Task.CompletedTask;
-            });
 
             app.Run();
         }

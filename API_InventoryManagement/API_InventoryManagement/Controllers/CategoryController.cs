@@ -1,4 +1,5 @@
 ﻿using API_InventoryManagement.Data;
+using API_InventoryManagement.DTO;
 using API_InventoryManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -37,11 +38,12 @@ namespace API_InventoryManagement.Controllers
 
         // POST api/<CategoryController>
         [HttpPost]
-        public IActionResult Post([FromBody] string value)
+        public IActionResult Post([FromBody] CategoryRequestDTO value)
         {
             var category = new Category()
             {
-                CategoryName = value
+                CategoryName = value.CategoryName,
+                Description = value.Description
             };
             _context.Categories.Add(category);
             _context.SaveChanges();

@@ -20,11 +20,11 @@ namespace Client_InventoryManagement.Pages.Account
             if (response == HttpStatusCode.OK)
             {
                 Response.Cookies.Delete("jwtToken");
-                return RedirectToPage("/Index");
+                return RedirectToPage("/Account/Login");
             }
             else
             {
-                return RedirectToPage("/Account/Login");
+                return RedirectToPage("/Index");
             }
         }
     }
