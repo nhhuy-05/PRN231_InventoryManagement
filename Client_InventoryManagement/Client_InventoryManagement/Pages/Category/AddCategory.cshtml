@@ -1,0 +1,89 @@
+﻿@page
+@model Client_InventoryManagement.Pages.Category.AddCategoryModel
+@{
+}
+<head>
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/style.css">
+</head>
+<div class="content">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Add Category</h4>
+            <h6>Create Category</h6>
+        </div>
+    </div>
+    </>
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <div class="alert @((TempData["Message"] as string)?.Contains("successfully") == true ? "alert-success" : "alert-danger")">
+            @TempData["Message"]
+        </div>
+    }
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <input name="categoryName" type="text">
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label> Category Image</label>
+                            <div class="image-upload">
+                                <input type="file">
+                                <div class="image-uploads">
+                                    <img name="picture" src="~/assets/img/icons/upload.svg" alt="img">
+                                    <h4>Drag and drop a file to upload</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-submit me-2">Submit</button>
+                        <a href="/Category/CategoryList" class="btn btn-cancel">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="~/assets/js/feather.min.js"></script>
+
+<script src="~/assets/js/jquery.slimscroll.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/assets/plugins/select2/js/select2.min.js"></script>
+
+<script src="~/assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="~/assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+<script src="~/assets/js/script.js"></script>
