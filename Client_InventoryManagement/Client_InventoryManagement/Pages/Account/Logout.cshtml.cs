@@ -7,16 +7,11 @@ namespace Client_InventoryManagement.Pages.Account
 {
     public class LogoutModel : PageModel
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public LogoutModel(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
-
         public IActionResult OnGet()
         {
-            var response = new AccountService(_httpContextAccessor).Logout();
+            // get token from cookie
+            var jwtToken = Request.Cookies["jwtToken"];
+            var response = new AccountService().Logout(jwtToken);
             if (response == HttpStatusCode.OK)
             {
                 Response.Cookies.Delete("jwtToken");

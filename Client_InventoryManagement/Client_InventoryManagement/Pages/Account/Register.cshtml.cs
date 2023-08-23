@@ -7,12 +7,6 @@ namespace Client_InventoryManagement.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public RegisterModel(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
         public void OnGet()
         {
         }
@@ -22,7 +16,7 @@ namespace Client_InventoryManagement.Pages.Account
             // check if username and password are correct
             if (email != null && password != null && fullname != null)
             {
-                AccountService accountService = new AccountService(_httpContextAccessor);
+                AccountService accountService = new AccountService();
                 var response = accountService.Register(email, password, fullname);
                 if (response == HttpStatusCode.OK)
                 {

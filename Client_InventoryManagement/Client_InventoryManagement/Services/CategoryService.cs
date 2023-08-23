@@ -5,33 +5,24 @@ namespace Client_InventoryManagement.Services
 {
     public class CategoryService : BaseService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public CategoryService(IHttpContextAccessor httpContextAccessor)
+        public CategoryService()
         {
-            _httpContextAccessor = httpContextAccessor;
         }
 
-        public List<CategoryDTO> GetCategories()
+        public List<CategoryDTO> GetCategories(string jwtToken)
         {
-            var request = _httpContextAccessor.HttpContext.Request;
-            string jwtToken = request.Cookies["jwtToken"];
             var response = GetData<List<CategoryDTO>>("Category",jwtToken).Result;
             return response;
         }
 
-        public HttpStatusCode AddCategory(CategoryRequestDTO category)
+        public HttpStatusCode AddCategory(CategoryRequestDTO category, string jwtToken)
         {
-            var request = _httpContextAccessor.HttpContext.Request;
-            string jwtToken = request.Cookies["jwtToken"];
             var response = PushData<CategoryRequestDTO>("Category", category, jwtToken).Result;
             return response;
         }
 
-        public HttpStatusCode UpdateCategory(CategoryRequestDTO category)
+        public HttpStatusCode UpdateCategory(CategoryRequestDTO category, string jwtToken)
         {
-            var request = _httpContextAccessor.HttpContext.Request;
-            string jwtToken = request.Cookies["jwtToken"];
             var response = PutData<CategoryRequestDTO>("Category", category, jwtToken).Result;
             return response;
         }

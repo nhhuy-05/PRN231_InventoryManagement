@@ -6,11 +6,9 @@ namespace Client_InventoryManagement.Services
 {
     public class AccountService : BaseService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountService(IHttpContextAccessor httpContextAccessor)
+        public AccountService()
         {
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public string GetToken(string username, string password)
@@ -36,10 +34,8 @@ namespace Client_InventoryManagement.Services
             return response;
         }
 
-        public HttpStatusCode Logout()
+        public HttpStatusCode Logout(string jwtToken)
         {
-            var request = _httpContextAccessor.HttpContext.Request;
-            string jwtToken = request.Cookies["jwtToken"];
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);

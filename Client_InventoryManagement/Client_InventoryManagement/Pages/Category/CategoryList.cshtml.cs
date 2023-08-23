@@ -8,13 +8,6 @@ namespace Client_InventoryManagement.Pages.Category
 {
     public class CategoryListModel : PageModel
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public CategoryListModel(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
-
         public async Task<IActionResult> OnGet()
         {
             // get token from cookie
@@ -33,9 +26,8 @@ namespace Client_InventoryManagement.Pages.Category
                 // check if user is admin
                 if (claims.ElementAt(0).Value == "ADMIN")
                 {
-
-                    CategoryService categoryService = new CategoryService(_httpContextAccessor);
-                    List<CategoryDTO> categories = categoryService.GetCategories();
+                    CategoryService categoryService = new CategoryService();
+                    List<CategoryDTO> categories = categoryService.GetCategories(jwtToken);
                     ViewData["Categories"] = categories;
                     return Page();
                 }

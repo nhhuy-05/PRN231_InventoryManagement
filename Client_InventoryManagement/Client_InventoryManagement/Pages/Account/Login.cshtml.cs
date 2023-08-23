@@ -6,19 +6,13 @@ namespace Client_InventoryManagement.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public LoginModel(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
         public void OnGet()
         {
         }
 
         public async Task<IActionResult> OnPost(string email, string password)
         {
-            AccountService accountService = new AccountService(_httpContextAccessor);
+            AccountService accountService = new AccountService();
             var response = accountService.GetToken(email, password);
             // check if username and password are correct
             if (response != null)
