@@ -62,7 +62,7 @@ namespace API_InventoryManagement.Controllers
             sup.SupplierName = dto.SupplierName;
             sup.Address = dto.Address;
             sup.Email = dto.Email;
-            sup.ContractDate = dto.ContractDate;
+            sup.ContractDate = DateTime.Now;
             sup.Phone = dto.Phone;
             _context.Suppliers.Update(sup);
             _context.SaveChanges();

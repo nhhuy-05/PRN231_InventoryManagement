@@ -1,4 +1,5 @@
 ﻿using API_InventoryManagement.Data;
+using API_InventoryManagement.DTO;
 using API_InventoryManagement.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -40,14 +41,14 @@ namespace API_InventoryManagement.Controllers
             return Ok(unit);
         }
         [HttpPost]
-        public IActionResult AddUnit(string name)
+        public IActionResult AddUnit(UnitRequestDTO dto)
         {
-            if (name==null)
+            if (dto==null)
             {
                 return BadRequest();
             }
             Unit u = new Unit();
-            u.UnitName = name;
+            u.UnitName = dto.UnitName;
             _context.Units.Add(u);
             _context.SaveChanges();
             return Ok("Add successfully");
