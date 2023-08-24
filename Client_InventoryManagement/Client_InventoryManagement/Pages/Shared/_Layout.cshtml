@@ -25,12 +25,37 @@
         <div class="header">
 
             <div class="header-left active">
-                <a href="/Index" class="logo">
-                    <img src="~/assets/img/logo.png" alt="">
-                </a>
-                <a href="/Index" class="logo-small">
-                    <img src="~/assets/img/logo-small.png" alt="">
-                </a>
+                @{
+                    // get token from cookie
+                    var token = Context.Request.Cookies["jwtToken"];
+                    if (token != null)
+                    {
+                        // decode token to get role in payload
+                        var tokenDecode = new JwtSecurityToken(token);
+                        var claims = tokenDecode.Claims;
+                        // check role
+                        var role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
+                        if (role == "ADMIN")
+                        {
+                            <a href="/Index" class="logo">
+                                <img src="~/assets/img/logo.png" alt="">
+                            </a>
+                            <a href="/Index" class="logo-small">
+                                <img src="~/assets/img/logo-small.png" alt="">
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Account/Profile" class="logo">
+                                <img src="~/assets/img/logo.png" alt="">
+                            </a>
+                            <a href="/Account/Profile" class="logo-small">
+                                <img src="~/assets/img/logo-small.png" alt="">
+                            </a>
+                        }
+                    }
+
+                }
                 <a id="toggle_btn" href="javascript:void(0);">
                 </a>
             </div>
@@ -45,8 +70,6 @@
 
             <ul class="nav user-menu">
                 @{
-                    // get token from cookie
-                    var token = Context.Request.Cookies["jwtToken"];
                     if (token != null)
                     {
                         // decode token to get role in payload
@@ -76,14 +99,11 @@
                                         </div>
                                     </div>
                                     <hr class="m-0">
-                                    <a class="dropdown-item" href="profile.html">
+                                    <a class="dropdown-item" href="/Account/Profile">
                                         <i class="me-2" data-feather="user"></i> My
                                         Profile
                                     </a>
-                                    <a class="dropdown-item" href="generalsettings.html">
-                                        <i class="me-2"
-                                           data-feather="settings"></i>Settings
-                                    </a>
+                                    
                                     <hr class="m-0">
                                     <a class="dropdown-item logout pb-0" href="/Account/Logout">
                                         <img src="~/assets/img/icons/log-out.svg" class="me-2" alt="img">Logout
@@ -115,8 +135,7 @@
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                    aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="generalsettings.html">Settings</a>
+                    <a class="dropdown-item" href="/Account/Profile">My Profile</a>
                     <a class="dropdown-item" href="/Account/Logout">Logout</a>
                 </div>
             </div>
@@ -161,20 +180,18 @@
                                         </ul>
                                     </li>
                                 }
-                                else
-                                {
-                                    <li class="submenu">
-                                        <a href="javascript:void(0);">
-                                            <img src="~/assets/img/icons/transfer1.svg" alt="img"><span>
-                                                Import Form
-                                            </span> <span class="menu-arrow"></span>
-                                        </a>
-                                        <ul>
-                                            <li><a href="/InputForm/AddInput">Import Input Form</a></li>
-                                            <li><a href="/OutputForm/AddOutput">Import Output Form </a></li>
-                                        </ul>
-                                    </li>
-                                }
+                                <li class="submenu">
+                                    <a href="javascript:void(0);">
+                                        <img src="~/assets/img/icons/transfer1.svg" alt="img"><span>
+                                            Import Form
+                                        </span> <span class="menu-arrow"></span>
+                                    </a>
+                                    <ul>
+                                        <li><a href="/InputForm/InputList">Input Form</a></li>
+                                        <li><a href="/OutputForm/OutputList">Output Form </a></li>
+                                    </ul>
+                                </li>
+
                             }
                         }
 

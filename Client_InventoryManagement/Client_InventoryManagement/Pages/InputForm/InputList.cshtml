@@ -1,0 +1,241 @@
+﻿@page
+@model Client_InventoryManagement.Pages.InputForm.InputListModel
+@{
+}
+<head>
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/style.css">
+</head>
+<div class="content">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Input List</h4>
+            <h6>Manage your Inputs</h6>
+        </div>
+        <div class="page-btn">
+            <a href="/InputForm/AddInput" class="btn btn-added">
+                <img src="~/assets/img/icons/plus.svg" alt="img"
+                     class="me-1">Add New Input
+            </a>
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <div class="alert @((TempData["Message"] as string)?.Contains("successfully") == true ? "alert-success" : "alert-danger")">
+            @TempData["Message"]
+        </div>
+    }
+    <div class="card">
+        <div class="card-body">
+            <div class="table-top">
+                <div class="search-set">
+                    <div class="search-path">
+                        <a class="btn btn-filter" id="filter_search">
+                            <img src="~/assets/img/icons/filter.svg" alt="img">
+                            <span><img src="~/assets/img/icons/closes.svg" alt="img"></span>
+                        </a>
+                    </div>
+                    <div class="search-input">
+                        <a class="btn btn-searchset">
+                            <img src="~/assets/img/icons/search-white.svg"
+                                 alt="img">
+                        </a>
+                    </div>
+                </div>
+                <div class="wordset">
+                    <ul>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                                <img src="~/assets/img/icons/pdf.svg" alt="img">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel">
+                                <img src="~/assets/img/icons/excel.svg" alt="img">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                                <img src="~/assets/img/icons/printer.svg" alt="img">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mb-0" id="filter_inputs">
+                <div class="card-body pb-0">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Choose Product</option>
+                                            <option>Macbook pro</option>
+                                            <option>Orange</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Choose Category</option>
+                                            <option>Computers</option>
+                                            <option>Fruits</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Choose Sub Category</option>
+                                            <option>Computer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Brand</option>
+                                            <option>N/D</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg col-sm-6 col-12 ">
+                                    <div class="form-group">
+                                        <select class="select">
+                                            <option>Price</option>
+                                            <option>150.00</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <a class="btn btn-filters ms-auto">
+                                            <img src="~/assets/img/icons/search-whites.svg" alt="img">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table datanew">
+                    <thead>
+                        <tr>
+                            <th>InputId</th>
+                            <th>SupplierName</th>
+                            <th>DateInput</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                            <th>StaffName</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="input-data">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="~/assets/js/feather.min.js"></script>
+
+<script src="~/assets/js/jquery.slimscroll.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/assets/plugins/select2/js/select2.min.js"></script>
+
+<script src="~/assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="~/assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+<script src="~/assets/js/script.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var jwtToken = getCookieValue('jwtToken');
+        // Make the AJAX request to get the input list
+        $.ajax({
+            url: 'https://localhost:5000/api/Input', // Update the URL to your API endpoint
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                if (jwtToken) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                }
+            },
+            success: function (data) {
+                // Clear existing rows
+                $('#input-data').empty();
+
+                // Iterate through the input data and create rows for the table
+                $.each(data, function (index, input) {
+                    var formattedDate = new Date(input.dateInput).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+
+                    var row = `
+                            <tr>
+                                <td>${input.inputId}</td>
+                                <td>${input.supplierName}</td>
+                                <td>${formattedDate}</td>
+                                <td>${input.status}</td>
+                                <td>${input.note}</td>
+                                <td>${input.staffName}</td>
+                                <td>
+                                    <a class="me-3" href="/InputForm/InputDetail?InputId=${input.inputId}">
+                                        <img src="/assets/img/icons/eye.svg" alt="img">
+                                    </a>
+                                    <a class="me-3" href="#">
+                                        <img src="/assets/img/icons/edit.svg" alt="img">
+                                    </a>
+                                    <a class="confirm-text" href="javascript:void(0);">
+                                        <img src="/assets/img/icons/delete.svg" alt="img">
+                                    </a>
+                                </tr>
+                        `;
+                    $('#input-data').append(row);
+                });
+            },
+            error: function () {
+                console.log('Error fetching input list');
+            }
+        });
+        function getCookieValue(cookieName) {
+            var name = cookieName + '=';
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+        }
+    });
+</script>

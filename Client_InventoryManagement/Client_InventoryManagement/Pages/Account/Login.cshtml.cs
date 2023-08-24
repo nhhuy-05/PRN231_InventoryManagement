@@ -1,6 +1,8 @@
 using Client_InventoryManagement.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json.Linq;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Client_InventoryManagement.Pages.Account
 {
@@ -19,7 +21,19 @@ namespace Client_InventoryManagement.Pages.Account
             {
                 // set token in cookie
                 Response.Cookies.Append("jwtToken", response.ToString());
-                return RedirectToPage("/Index");
+                var tokenDecode = new JwtSecurityToken(response);
+                var claims = tokenDecode.Claims;
+                // check if user is admin
+                if (claims.ElementAt(0).Value == "ADMIN")
+                {
+                    // redirect to index page
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                    // redirect to index page
+                    return RedirectToPage("/Account/Profile");
+                }
             }
             else
             {

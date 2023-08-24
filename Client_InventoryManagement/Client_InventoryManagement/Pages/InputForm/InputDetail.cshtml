@@ -1,0 +1,129 @@
+﻿@page
+@model Client_InventoryManagement.Pages.InputForm.InputDetailModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/owlcarousel/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/style.css">
+</head>
+<div class="content">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Input Details of @ViewBag.InputId</h4>
+            <h6>Full details of a input</h6>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-sm-12">
+            <div id="inputdetail-data" class="card">
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="~/assets/js/feather.min.js"></script>
+
+<script src="~/assets/js/jquery.slimscroll.min.js"></script>
+
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/assets/plugins/owlcarousel/owl.carousel.min.js"></script>
+
+<script src="~/assets/plugins/select2/js/select2.min.js"></script>
+
+<script src="~/assets/js/script.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var jwtToken = getCookieValue('jwtToken');
+        var inputId = '@ViewBag.InputId';
+        // Make the AJAX request to get the input list
+        $.ajax({
+            url: 'https://localhost:5000/api/InputDetail/' + inputId,
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                if (jwtToken) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                }
+            },
+            success: function (data) {
+                console.log(data);
+                var inputDetailList = $('#inputdetail-data');
+
+                // Clear any existing items
+                inputDetailList.empty();
+
+                // Iterate through the input details and add them to the list
+                $.each(data, function (index, detail) {
+                    var formattedDate = new Date(detail.expiredDate).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    var listItem = `
+                        <div class="card-body">
+                        <div class="productdetails">
+                            <ul class="product-bar">
+                        <li>
+                            <h4>${detail.productId}</h4>
+                            <h6>${detail.productName}</h6>
+                        </li>
+                        <li>
+                            <h4>Quantity</h4>
+                            <h6>${detail.quantity}</h6>
+                        </li>
+                        <li>
+                            <h4>Expired Date</h4>
+                            <h6>${formattedDate}</h6>
+                        </li>
+                        <li>
+                            <h4>Quantity In Stock</h4>
+                            <h6>${detail.quantityInStock}</h6>
+                        </li>
+                        <li>
+                            <h4>Input Price</h4>
+                            <h6>${detail.inputPrice}</h6>
+                        </li>
+                            </ul>
+                        </div>
+                    </div>
+                    `;
+                    inputDetailList.append(listItem);
+                });
+            },
+            error: function () {
+                console.log('Error fetching input list');
+            }
+        });
+        function getCookieValue(cookieName) {
+            var name = cookieName + '=';
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+        }
+    });
+</script>

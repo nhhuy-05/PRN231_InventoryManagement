@@ -4,6 +4,7 @@ using API_InventoryManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_InventoryManagement.Controllers
 {
@@ -24,6 +25,22 @@ namespace API_InventoryManagement.Controllers
         public IActionResult Get()
         {
             var inputDetails = _context.InputDetails.ToList();
+            return Ok(inputDetails);
+        }
+
+        // GET input detail by input id
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
+        {
+            var inputDetails = _context.InputDetails.Include(x=>x.Product).Where(x => x.InputId.Contains(id)).Select(x => new
+            {
+                x.ProductId,
+                x.Product.ProductName,
+                x.Quantity,
+                x.ExpiredDate,
+                x.QuantityInStock,
+                x.InputPrice
+            }).ToList();
             return Ok(inputDetails);
         }
 

@@ -75,7 +75,7 @@ namespace API_InventoryManagement.Controllers
             return Ok("Update succesffuly");
         }
         [HttpDelete]
-        public IActionResult DeleteCustoer(int id)
+        public IActionResult DeleteCustomer(int id)
         {
             var customer = _context.Customers.FirstOrDefault(x => x.Id == id);
             if (customer==null)
