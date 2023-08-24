@@ -14,16 +14,20 @@ namespace Client_InventoryManagement.Services
             var response = GetData<List<SupplierDTO>>("Supplier", jwtToken).Result;
             return response;
         }
-
+        public SupplierDTO GetSupplier(int id,string jwtToken)
+        {
+            var respone = GetData<SupplierDTO>("Supplier/" + id, jwtToken).Result;
+            return respone;
+        }
         public HttpStatusCode AddSupplier(SupplierRequestDTO supplier, string jwtToken)
         {
             var response = PushData<SupplierRequestDTO>("Supplier", supplier, jwtToken).Result;
             return response;
         }
 
-        public HttpStatusCode UpdateSupplier(SupplierRequestDTO supplier, string jwtToken)
+        public HttpStatusCode UpdateSupplier(int id,SupplierRequestDTO supplier, string jwtToken)
         {
-            var response = PutData<SupplierRequestDTO>("Category", supplier, jwtToken).Result;
+            var response = PutData<SupplierRequestDTO>("Supplier/"+id, supplier, jwtToken).Result;
             return response;
         }
     }

@@ -118,6 +118,10 @@
 
                             <th>Supplier Id</th>
                             <th>Supplier name</th>
+                            <th>Supplier address</th>
+                            <th>Supplier email</th>
+                            <th>Supplier phone</th>
+                            <th>Contract Date</th>
 
                             <th>Action</th>
                         </tr>
@@ -131,10 +135,13 @@
                                 <td>
                                     @item.SupplierName
                                 </td>
-
+                                <td>@item.Address</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Email</td>
+                                <td>@item.ContractDate</td>
 
                                 <td>
-                                    <a class="me-3" href="editcategory.html">
+                                    <a class="me-3" href="UpdateSupplier?id=@item.Id">
                                         <img src="~/assets/img/icons/edit.svg" alt="img">
                                     </a>
                                     <a class="me-3 confirm-text" href="javascript:void(0);">
