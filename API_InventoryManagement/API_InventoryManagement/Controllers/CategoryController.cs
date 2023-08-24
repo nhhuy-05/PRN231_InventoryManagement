@@ -10,7 +10,7 @@ namespace API_InventoryManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,STAFF")]
     public class CategoryController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

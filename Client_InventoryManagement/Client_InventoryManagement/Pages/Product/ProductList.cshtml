@@ -30,7 +30,12 @@
             </a>
         </div>
     </div>
-
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <div class="alert @((TempData["Message"] as string)?.Contains("successfully") == true ? "alert-success" : "alert-danger")">
+            @TempData["Message"]
+        </div>
+    }
     <div class="card">
         <div class="card-body">
             <div class="table-top">
@@ -159,9 +164,6 @@
                                 <td>@item.Description</td>
                                 <td>
                                     <a class="me-3" href="Update?id=@item.ProductId">
-                                        <img src="~/assets/img/icons/eye.svg" alt="img">
-                                    </a>
-                                    <a class="me-3" href="editproduct.html">
                                         <img src="~/assets/img/icons/edit.svg" alt="img">
                                     </a>
                                     <a class="confirm-text" href="javascript:void(0);">

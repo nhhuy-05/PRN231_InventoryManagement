@@ -1,12 +1,15 @@
-﻿using API_InventoryManagement.Data;
-using API_InventoryManagement.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace API_InventoryManagement.DTO
+namespace Client_InventoryManagement.DTO
 {
-    public class InputRequestDTO
+    public class InputDTO
     {
+        [Required]
         public int SupplierId { get; set; }
+
+        [Required]
         public string? Status { get; set; }
+
         public string? Note { get; set; }
     }
 

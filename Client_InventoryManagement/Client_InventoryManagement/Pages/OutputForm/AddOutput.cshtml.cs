@@ -2,13 +2,12 @@ using Client_InventoryManagement.DTO;
 using Client_InventoryManagement.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 
-namespace Client_InventoryManagement.Pages.InputForm
+namespace Client_InventoryManagement.Pages.OutputForm
 {
-    public class AddInputModel : PageModel
+    public class AddOutputModel : PageModel
     {
         public async Task<IActionResult> OnGet()
         {
@@ -38,45 +37,44 @@ namespace Client_InventoryManagement.Pages.InputForm
             }
         }
 
-        public IActionResult OnPost(InputDTO InputDTOForm, string ProductData)
+        public IActionResult OnPost(OutputDTO OutputDTOForm, string ProductData)
         {
             if (!ModelState.IsValid)
             {
                 TempData["Message"] = "Please fill in all required fields";
                 return Page();
             }
-            var inputDetails = Newtonsoft.Json.JsonConvert.DeserializeObject<List<InputDetailDTO>>(ProductData);
-            var inputDTO = new InputDTO
+            var outputDetails = Newtonsoft.Json.JsonConvert.DeserializeObject<List<OutputDetailDTO>>(ProductData);
+            var outputDTO = new OutputDTO
             {
-                SupplierId = InputDTOForm.SupplierId,
-                Status = InputDTOForm.Status,
-                Note = InputDTOForm.Note
+                CustomerId = OutputDTOForm.CustomerId,
+                Status = OutputDTOForm.Status,
+                Note = OutputDTOForm.Note
             };
             // get token from cookie
             var jwtToken = Request.Cookies["jwtToken"];
-            InputService inputService = new InputService();
-            var newInputDTO = inputService.AddInput(inputDTO, jwtToken);
-            foreach (var item in inputDetails)
+            OutputService outputService = new OutputService();
+            var newOutputDTO = outputService.AddOutput(outputDTO, jwtToken);
+            foreach (var item in outputDetails)
             {
-                var inputDetailRequestDTO = new InputDetailRequestDTO
+                var outputDetailRequestDTO = new OutputDetailRequestDTO
                 {
-                    InputId = newInputDTO.Id,
+                    OutputId = newOutputDTO.Id,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
-                    ExpiredDate = item.ExpiredDate,
-                    InputPrice = item.InputPrice
+                    OutputPrice = item.OutputPrice,
+                    InputId = item.InputId
                 };
-                var response = inputService.AddInputDetail(inputDetailRequestDTO, jwtToken);
+                var response = outputService.AddOutputDetail(outputDetailRequestDTO, jwtToken);
                 if (response == HttpStatusCode.OK)
                 {
-                    TempData["Message"] = "Add input successfully";
+                    TempData["Message"] = "Add output successfully";
                 }
                 else
                 {
-                    TempData["Message"] = "Add input failed";
-                    return Page();
+                    TempData["Message"] = "Add output failed";
                 }
-            }         
+            }
             return Page();
         }
     }
