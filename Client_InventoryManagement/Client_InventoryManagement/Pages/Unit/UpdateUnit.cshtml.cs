@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 
-namespace Client_InventoryManagement.Pages.Supplier
+namespace Client_InventoryManagement.Pages.Unit
 {
-    public class AddSupplierModel : PageModel
+    public class UpdateUnitModel : PageModel
     {
-        public async Task<IActionResult> OnGet()
+        [BindProperty]
+        public UnitDTO unitDTO { get; set; }
+        public async Task<IActionResult> OnGet(int id)
         {
             // get token from cookie
             var jwtToken = Request.Cookies["jwtToken"];
@@ -27,6 +29,9 @@ namespace Client_InventoryManagement.Pages.Supplier
                 // check if user is admin
                 if (claims.ElementAt(0).Value == "ADMIN")
                 {
+                    UnitService unitService = new UnitService();
+                    unitDTO = unitService.UnitDTOGetUnitById(id, jwtToken);
+                    //ViewData["Unit"] = unit;
                     return Page();
                 }
                 else
@@ -36,34 +41,22 @@ namespace Client_InventoryManagement.Pages.Supplier
                 }
             }
         }
-
-
-        public async Task<IActionResult> OnPost(SupplierRequestDTO dto)
+        public async Task<IActionResult> OnPost()
         {
-
-            if (dto == null)
+            UnitService unitService = new UnitService();
+            
+            // get token from cookie
+            var jwtToken = Request.Cookies["jwtToken"];
+            var response = unitService.UpdateUnit(unitDTO, jwtToken);
+            if (response == HttpStatusCode.OK)
             {
-                TempData["Message"] = "Please fill the data!";
-                return Page();
+                TempData["Message"] = "Update unit successfully";
+                return RedirectToPage("/Unit/UnitList");
             }
             else
             {
-                SupplierService supplierService = new SupplierService();
-
-                // get token from cookie
-                var jwtToken = Request.Cookies["jwtToken"];
-                var response = supplierService.AddSupplier(dto, jwtToken);
-                if (response == HttpStatusCode.OK)
-                {
-                    TempData["Message"] = "Add customer successfully";
-                    return RedirectToPage("/Supplier/SupplierList");
-                }
-                else
-                {
-                    TempData["Message"] = "Add Customer failed";
-                    return Page();
-                }
-
+                TempData["Message"] = "Update Unit failed";
+                return Page();
             }
         }
     }
