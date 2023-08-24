@@ -1,5 +1,5 @@
 ﻿@page
-@model Client_InventoryManagement.Pages.Supplier.UpdateSupplierModel
+@model Client_InventoryManagement.Pages.Category.UpdateCategoryModel
 @{
 }
 <head>
@@ -19,8 +19,8 @@
 <div class="content">
     <div class="page-header">
         <div class="page-title">
-            <h4>Supplier Management</h4>
-            <h6>Edit Supplier</h6>
+            <h4>Category Management</h4>
+            <h6>Update Category</h6>
         </div>
     </div>
     @if (!string.IsNullOrEmpty(TempData["Message"] as string))
@@ -35,29 +35,22 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Supplier Id</label>
-                            <input name="SupplierId" type="text" asp-for="@Model.supplierDTO.Id" readonly>
+                            <label>Category Id</label>
+                            <input name="Id" type="text" asp-for="@Model.categoryDTO.Id" readonly>
                         </div>
                         <div class="form-group">
-                            <label>Supplier Name</label>
-                            <input name="SupplierName" type="text" asp-for="@Model.supplierDTO.SupplierName">
+                            <label>Category Name</label>
+                            <input name="CategoryName" type="text" asp-for="@Model.categoryDTO.CategoryName">
                         </div>
                         <div class="form-group">
-                            <label>Supplier Address</label>
-                            <input name="Address" type="text" asp-for="@Model.supplierDTO.Address">
+                            <label>Category  Description</label>
+                            <input name="Description" type="text" asp-for="@Model.categoryDTO.Description">
                         </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input name="Phone" type="text" asp-for="@Model.supplierDTO.Phone">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input name="Email" type="text" asp-for="@Model.supplierDTO.Email">
-                        </div>
+                       
                     </div>
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-submit me-2">Submit</button>
-                        <a href="/Supplier/SupplierList" class="btn btn-cancel">Cancel</a>
+                        <a href="/Category/CategoryList" class="btn btn-cancel">Cancel</a>
                     </div>
                 </div>
             </form>

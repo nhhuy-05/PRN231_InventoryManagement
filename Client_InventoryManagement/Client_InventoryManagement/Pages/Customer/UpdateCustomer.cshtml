@@ -35,20 +35,24 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Customer Name</label>
-                            <input name="CustomerName" type="text">
+                            <label>Customer Id</label>
+                            <input name="CustomerId" type="text" asp-for="@Model.customerDTO.Id" readonly>
                         </div>
                         <div class="form-group">
-                            <label>Customer Email</label>
-                            <input name="Address" type="text">
+                            <label>Customer Name</label>
+                            <input name="CustomerName" type="text" asp-for="@Model.customerDTO.CustomerName">
                         </div>
                         <div class="form-group">
                             <label>Customer Address</label>
-                            <input name="Email" type="text">
+                            <input name="Address" type="text" asp-for="@Model.customerDTO.Address">
+                        </div>
+                        <div class="form-group">
+                            <label>Customer Email</label>
+                            <input name="Email" type="text" asp-for="@Model.customerDTO.Email">
                         </div>
                         <div class="form-group">
                             <label>Customer Phone</label>
-                            <input name="Phone" type="text">
+                            <input name="Phone" type="text" asp-for="@Model.customerDTO.Phone">
                         </div>
                     </div>
                     <div class="col-lg-12">

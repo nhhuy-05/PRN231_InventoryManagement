@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 
-namespace Client_InventoryManagement.Pages.Customer
+namespace Client_InventoryManagement.Pages.Category
 {
-    public class UpdateCustomerModel : PageModel
+    public class UpdateCategoryModel : PageModel
     {
         [BindProperty]
-        public CustomerDTO customerDTO { get; set; }
+        public CategoryDTO categoryDTO { get; set; }
         public async Task<IActionResult> OnGet(int id)
         {
             // get token from cookie
@@ -29,8 +29,8 @@ namespace Client_InventoryManagement.Pages.Customer
                 // check if user is admin
                 if (claims.ElementAt(0).Value == "ADMIN")
                 {
-                    CustomerService customerService = new CustomerService();
-                    customerDTO = customerService.GetCustomer(id, jwtToken);
+                    CategoryService categoryService = new CategoryService();
+                    categoryDTO = categoryService.GetCategory(id, jwtToken);
                     //ViewData["Unit"] = unit;
                     return Page();
                 }
@@ -43,27 +43,24 @@ namespace Client_InventoryManagement.Pages.Customer
         }
         public async Task<IActionResult> OnPost()
         {
-            CustomerService customerService = new CustomerService();
+            CategoryService categoryService = new CategoryService();
 
             // get token from cookie
             var jwtToken = Request.Cookies["jwtToken"];
-            CustomerRequestDTO dto = new CustomerRequestDTO
+            CategoryRequestDTO dto = new CategoryRequestDTO
             {
-                CustomerName = customerDTO.CustomerName,
-                Email = customerDTO.Email,
-                Address = customerDTO.Address,
-                Phone = customerDTO.Phone,
-                ContractDate= DateTime.Now,
+               CategoryName = categoryDTO.CategoryName,
+               Description = categoryDTO.Description,
             };
-            var response = customerService.UpdateCustomer(customerDTO.Id, dto, jwtToken);
+            var response = categoryService.UpdateCategory(categoryDTO.Id, dto, jwtToken);
             if (response == HttpStatusCode.OK)
             {
-                TempData["Message"] = "Update Customer successfully";
-                return RedirectToPage("/Customer/CustomerList");
+                TempData["Message"] = "Update Category successfully";
+                return RedirectToPage("CategoryList");
             }
             else
             {
-                TempData["Message"] = "Update Customer failed";
+                TempData["Message"] = "Update Category failed";
                 return Page();
             }
         }

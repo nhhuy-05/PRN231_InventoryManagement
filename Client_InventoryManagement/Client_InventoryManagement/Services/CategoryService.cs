@@ -14,6 +14,11 @@ namespace Client_InventoryManagement.Services
             var response = GetData<List<CategoryDTO>>("Category",jwtToken).Result;
             return response;
         }
+        public CategoryDTO GetCategory(int id, string jwtToken)
+        {
+            var respone = GetData<CategoryDTO>("Category/" + id, jwtToken).Result;
+            return respone;
+        }
 
         public HttpStatusCode AddCategory(CategoryRequestDTO category, string jwtToken)
         {
@@ -21,9 +26,9 @@ namespace Client_InventoryManagement.Services
             return response;
         }
 
-        public HttpStatusCode UpdateCategory(CategoryRequestDTO category, string jwtToken)
+        public HttpStatusCode UpdateCategory(int id,CategoryRequestDTO category, string jwtToken)
         {
-            var response = PutData<CategoryRequestDTO>("Category", category, jwtToken).Result;
+            var response = PutData<CategoryRequestDTO>("Category/"+id, category, jwtToken).Result;
             return response;
         }
     }

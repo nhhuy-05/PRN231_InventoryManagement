@@ -12,6 +12,11 @@ namespace Client_InventoryManagement.Services
             var response = GetData<List<ProductDTO>>("Product", jwtToken).Result;
             return response;
         }
+        public ProductDTO GetProduct(int id, string jwtToken)
+        {
+            var respone = GetData<ProductDTO>("Product/" + id, jwtToken).Result;
+            return respone;
+        }
 
         public HttpStatusCode AddProduct(ProductRequestDTO product, string jwtToken)
         {
@@ -19,9 +24,9 @@ namespace Client_InventoryManagement.Services
             return response;
         }
 
-        public HttpStatusCode UpdateProduct(ProductDTO product, string jwtToken)
+        public HttpStatusCode UpdateProduct(int id, ProductRequestDTO product, string jwtToken)
         {
-            var response = PutData<ProductDTO>("Product", product, jwtToken).Result;
+            var response = PutData<ProductRequestDTO>("Product/"+id, product, jwtToken).Result;
             return response;
         }
     }

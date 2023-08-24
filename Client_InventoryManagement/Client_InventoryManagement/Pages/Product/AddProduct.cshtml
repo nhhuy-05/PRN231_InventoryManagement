@@ -19,135 +19,74 @@
 <div class="content">
     <div class="page-header">
         <div class="page-title">
-            <h4>Product Add</h4>
-            <h6>Create new product</h6>
+            <h4>Product Management</h4>
+            <h6>Add Product</h6>
         </div>
     </div>
-
+    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+    {
+        <div class="alert @((TempData["Message"] as string)?.Contains("successfully") == true ? "alert-success" : "alert-danger")">
+            @TempData["Message"]
+        </div>
+    }
     <div class="card">
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Product Name</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select class="select">
-                            <option>Choose Category</option>
-                            <option>Computers</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Sub Category</label>
-                        <select class="select">
-                            <option>Choose Sub Category</option>
-                            <option>Fruits</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Brand</label>
-                        <select class="select">
-                            <option>Choose Brand</option>
-                            <option>Brand</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Unit</label>
-                        <select class="select">
-                            <option>Choose Unit</option>
-                            <option>Unit</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>SKU</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Minimum Qty</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Quantity</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Tax</label>
-                        <select class="select">
-                            <option>Choose Tax</option>
-                            <option>2%</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Discount Type</label>
-                        <select class="select">
-                            <option>Percentage</option>
-                            <option>10%</option>
-                            <option>20%</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label>Price</label>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="form-group">
-                        <label> Status</label>
-                        <select class="select">
-                            <option>Closed</option>
-                            <option>Open</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="form-group">
-                        <label> Product Image</label>
-                        <div class="image-upload">
-                            <input type="file">
-                            <div class="image-uploads">
-                                <img src="~/assets/img/icons/upload.svg" alt="img">
-                                <h4>Drag and drop a file to upload</h4>
-                            </div>
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input name="ProductName" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId">Category:</label>
+                            <select class="form-control" name="CategoryId" id="categoryId">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Id">@item.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supplierId">Supplier:</label>
+                            <select class="form-control" name="SupplierId" id="supplierId">
+                                @foreach (var item in ViewBag.Suppliers)
+                                {
+                                    <option value="@item.Id">@item.SupplierName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="unitId">Unit:</label>
+                            <select class="form-control" name="UnitId" id="unitId">
+                                @foreach (var item in ViewBag.Units)
+                                {
+                                    <option value="@item.Id">@item.UnitName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input name="Description" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>Picture</label>
+                            <input name="Picture" type="text">
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-submit me-2">Submit</button>
+                        <a href="/Product/ProductList" class="btn btn-cancel">Cancel</a>
+                    </div>
                 </div>
-                <div class="col-lg-12">
-                    <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
-                    <a href="productlist.html" class="btn btn-cancel">Cancel</a>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
 </div>
+
 <script src="~/assets/js/jquery-3.6.0.min.js"></script>
 
 <script src="~/assets/js/feather.min.js"></script>
