@@ -1,0 +1,295 @@
+﻿@page
+@model Client_InventoryManagement.Pages.InputForm.AddInputModel
+@{
+}
+<head>
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="~/assets/css/style.css">
+</head>
+
+<div class="content">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Add Input</h4>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Supplier Name</label>
+                        <select id="supplierSelect" class="select">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <select id="productSelect" class="select">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="select">
+                            <option>Choose Status</option>
+                            <option>Completed</option>
+                            <option>Inprogress</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Expired Date</th>
+                                <th>Input Price($) </th>
+                                <th class="text-end">Total Cost ($) </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 float-md-right">
+                    <div class="total-order">
+                        <ul>
+                            <li>
+                                <h4>Total Products</h4>
+                                <h5 id="totalProducts">0</h5>
+                            </li>
+                            <li>
+                                <h4>Total Products Quantity</h4>
+                                <h5 id="totalProductsQuantity">0</h5>
+                            </li>
+                            <li class="total">
+                                <h4>Grand Total</h4>
+                                <h5 id="grandTotalAmount">$ 0.00</h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Note</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
+                    <a href="purchaselist.html" class="btn btn-cancel">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="~/assets/js/feather.min.js"></script>
+
+<script src="~/assets/js/jquery.slimscroll.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/assets/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/assets/plugins/select2/js/select2.min.js"></script>
+
+<script src="~/assets/js/moment.min.js"></script>
+<script src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="~/assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="~/assets/plugins/sweetalert/sweetalerts.min.js"></script>
+
+<script src="~/assets/js/script.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Make the AJAX request to your API endpoint
+        $.ajax({
+            url: 'https://localhost:5000/api/Supplier',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Clear existing options
+                $('#supplierSelect').empty();
+                // Add the "Choose" option
+                $('#supplierSelect').append($('<option>', {
+                    value: '',
+                    text: 'Choose'
+                }));
+
+                // Iterate through the supplier data and add options
+                $.each(data, function (index, supplier) {
+                    $('#supplierSelect').append($('<option>', {
+                        value: supplier.id,
+                        text: supplier.supplierName
+                    }));
+                });
+            },
+            error: function () {
+                console.log('Error fetching suppliers');
+            }
+        });
+
+
+        // Handle supplier selection
+        $('#supplierSelect').change(function () {
+            var selectedSupplierId = $(this).val();
+
+            if (selectedSupplierId !== '') {
+                // Make the AJAX request to get products by supplier ID
+                $.ajax({
+                    url: `https://localhost:5000/api/Product/Supplier/${selectedSupplierId}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#productSelect').empty();
+                        $('#productSelect').append($('<option>', {
+                            value: '',
+                            text: 'Choose'
+                        }));
+                        $.each(data, function (index, product) {
+                            $('#productSelect').append($('<option>', {
+                                value: product.id,
+                                text: product.productName
+                            }));
+                        });
+                    },
+                    error: function () {
+                        console.log('Error fetching products for the selected supplier');
+                    }
+                });
+            } else {
+                $('#productSelect').empty(); // Clear products if no supplier is selected
+            }
+        });
+
+        // Handle product selection
+        $('#productSelect').change(function () {
+            var selectedProductId = $(this).val();
+
+            if (selectedProductId !== '') {
+                // Make the AJAX request to get product details
+                $.ajax({
+                    url: `https://localhost:5000/api/Product/${selectedProductId}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (product) {
+                        // Add a new row to the table with the selected product details
+                        var newRow = `
+                                            <tr data-product-id="${product.id}">
+                                                <td class="productimgname">
+                                                    <a class="product-img">
+                                                        <img src="/assets/img/product/product7.jpg" alt="product">
+                                                    </a>
+                                                    <a href="javascript:void(0);">${product.productName}</a>
+                                                </td>
+                                                <td><input class="quantity-input" type="number" value="1"></td>
+                                                <td><input class="expired-input" type="date"></td>
+                                                <td><input class="price-input" type="number" step="0.01" value="0.00"></td>
+                                                <td class="text-end">0.00</td>
+                                                <td>
+                                                    <a class="delete-set">
+                                                        <img src="/assets/img/icons/delete.svg" alt="svg">
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        `;
+                        $('#productTableBody').append(newRow);
+                        updateTotalCounts();
+                    },
+                    error: function () {
+                        console.log('Error fetching product details');
+                    }
+                });
+            }
+        });
+
+        // Calculate total cost and update the table
+        $('#productTableBody').on('input', '.quantity-input, .price-input', function () {
+            var row = $(this).closest('tr');
+            var quantity = parseInt(row.find('.quantity-input').val());
+            var price = parseFloat(row.find('.price-input').val());
+
+            // Ensure positive quantity and price values
+            if (quantity < 0 || isNaN(quantity)) {
+                row.find('.quantity-input').val(0);
+                quantity = 0;
+            }
+
+            if (price < 0 || isNaN(price)) {
+                row.find('.price-input').val(0);
+                price = 0;
+            }
+
+            var totalCost = quantity * price;
+
+            row.find('.text-end').text(totalCost.toFixed(2));
+
+            // Calculate and update the total products, total products quantity, and grand total
+            updateTotalCounts();
+        });
+
+        $('#productTableBody').on('click', '.delete-set', function () {
+            $(this).closest('tr').remove();
+            updateTotalCounts();
+        });
+
+        function updateTotalCounts() {
+            var productCounts = {}; // Object to store product name counts
+            var totalProductsQuantity = 0; // Total quantity of all products
+            var grandTotal = 0;
+
+            $('#productTableBody tr').each(function () {
+                var productName = $(this).find('.productimgname a:last-child').text().trim(); // Updated code
+                var quantity = parseInt($(this).find('.quantity-input').val());
+                var price = parseFloat($(this).find('.price-input').val());
+
+                var totalCost = quantity * price;
+
+                // Update product name count
+                if (productCounts[productName]) {
+                    productCounts[productName] += quantity;
+                } else {
+                    productCounts[productName] = quantity;
+                }
+
+                totalProductsQuantity += quantity; // Update total quantity
+                grandTotal += totalCost;
+            });
+
+            // Update the total products count, total products quantity, and grand total
+            var uniqueProductCount = Object.keys(productCounts).length;
+            $('#totalProducts').text(uniqueProductCount);
+            $('#totalProductsQuantity').text(totalProductsQuantity);
+            $('#grandTotalAmount').text('$ ' + grandTotal.toFixed(2));
+        }
+    });
+</script>

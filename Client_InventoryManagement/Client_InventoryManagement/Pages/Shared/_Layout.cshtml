@@ -53,7 +53,7 @@
                         var tokenDecode = new JwtSecurityToken(token);
                         var claims = tokenDecode.Claims;
                         // get claim value has key is ClaimTypes.Name
-                        var fullname = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+                        var fullname = claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
                         var role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
 
                         <li class="nav-item dropdown has-arrow main-drop">

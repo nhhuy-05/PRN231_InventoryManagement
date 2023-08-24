@@ -130,17 +130,15 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table  datanew">
+                <table class="table datanew">
                     <thead>
                         <tr>
-                            
-                            <th>ProductId</th>
+                            <th>Id</th>
                             <th>ProductName</th>
                             <th>CategoryName </th>
                             <th>UnitName</th>
                             <th>SupplierName</th>
                             <th>Description</th>
-                            
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -148,21 +146,17 @@
                         @foreach (var item in ViewBag.Products)
                         {
                             <tr>
-
+                                <td>@item.ProductId</td>
                                 <td class="productimgname">
                                     <a href="javascript:void(0);" class="product-img">
                                         <img src="~/assets/img/product/product1.jpg" alt="product">
                                     </a>
-                                    <a href="javascript:void(0);">Macbook pro</a>
+                                    <a href="javascript:void(0);">@item.ProductName</a>
                                 </td>
-                                @*<td>@item.ProductId</td>*@
-                                <td>1</td>
-                              @*  <td>@item.ProductName</td>
                                 <td>@item.CategoryName</td>
                                 <td>@item.UnitName</td>
                                 <td>@item.SupplierName</td>
-                                <td>@item.Description</td>*@
-                               
+                                <td>@item.Description</td>
                                 <td>
                                     <a class="me-3" href="product-details.html">
                                         <img src="~/assets/img/icons/eye.svg" alt="img">
