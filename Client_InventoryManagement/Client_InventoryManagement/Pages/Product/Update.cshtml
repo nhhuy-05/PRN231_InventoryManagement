@@ -21,6 +21,7 @@
         <form method="post">
             <div class="row">
                 <div class="col-lg-6 col-sm-6 col-12">
+                    <input type="hidden" name="productId" value="@ViewBag.ProductId" />
                     <div class="form-group">
                         <label>Product Name</label>
                         <input name="ProductName" type="text" asp-for="@Model.productDTO.ProductName">
@@ -30,7 +31,7 @@
                         <select class="form-control" name="CategoryId" id="categoryId">
                             @foreach (var item in ViewBag.Categories)
                             {
-                                @if (item.Id==Model.productDTO.CategoryId)
+                                @if (item.Id == Model.productDTO.CategoryId)
                                 {
                                     <option value="@item.Id" selected>@item.CategoryName</option>
                                 }
@@ -51,9 +52,13 @@
 
                                 @if (item.Id == Model.productDTO.SupplierId)
                                 {
-                                    <option value="@item.Id" sel>@item.SupplierName</option>
+                                    <option value="@item.Id" selected>@item.SupplierName</option>
                                 }
-                                
+                                else
+                                {
+                                    <option value="@item.Id">@item.SupplierName</option>
+                                }
+
                             }
                         </select>
                     </div>
@@ -85,7 +90,6 @@
     </div>
 </div>
 
-</div>
 
 <script src="~/assets/js/jquery-3.6.0.min.js"></script>
 

@@ -2,14 +2,17 @@
 using API_InventoryManagement.DTO;
 using API_InventoryManagement.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Security.Cryptography.Xml;
 
 namespace API_InventoryManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN,STAFF")]
     public class SupplierController : ControllerBase
     {
         private readonly ApplicationDbContext _context;

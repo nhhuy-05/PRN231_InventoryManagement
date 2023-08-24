@@ -9,6 +9,7 @@ namespace API_InventoryManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMIN,STAFF")]
     public class InputDetailController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -26,7 +27,6 @@ namespace API_InventoryManagement.Controllers
             return Ok(inputDetails);
         }
 
-        [Authorize(Roles = "STAFF")]
         [HttpPost]
         public IActionResult Post([FromBody] InputDetailRequestDTO value)
         {
@@ -35,6 +35,8 @@ namespace API_InventoryManagement.Controllers
                 InputId = value.InputId,
                 ProductId = value.ProductId,
                 Quantity = value.Quantity,
+                ExpiredDate = value.ExpiredDate,
+                QuantityInStock = value.Quantity,
                 InputPrice = value.InputPrice
             };
             _context.InputDetails.Add(inputDetail);

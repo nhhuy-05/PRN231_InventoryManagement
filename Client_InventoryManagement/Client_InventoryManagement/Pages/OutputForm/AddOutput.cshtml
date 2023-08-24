@@ -1,5 +1,5 @@
 ﻿@page
-@model Client_InventoryManagement.Pages.InputForm.AddInputModel
+@model Client_InventoryManagement.Pages.OutputForm.AddOutputModel
 @{
 }
 <head>
@@ -23,7 +23,7 @@
 <div class="content">
     <div class="page-header">
         <div class="page-title">
-            <h4>Add Input</h4>
+            <h4>Add Output</h4>
         </div>
     </div>
     @if (!string.IsNullOrEmpty(TempData["Message"] as string))
@@ -38,8 +38,15 @@
                 <div class="row">
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
+                            <label>Customer Name</label>
+                            <select name="OutputDTOForm.CustomerId" id="customerSelect" class="select">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
                             <label>Supplier Name</label>
-                            <select name="InputDTOForm.SupplierId" id="supplierSelect" class="select">
+                            <select id="supplierSelect" class="select">
                             </select>
                         </div>
                     </div>
@@ -51,10 +58,19 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>From Invoice</label>
+                            <select id="inputSelect" class="select">
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="col-lg-3 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Status</label>
-                            <select name="InputDTOForm.Status" id="statusSelect" class="select">
+                            <select name="OutputDTOForm.Status" id="statusSelect" class="select">
                                 <option>Choose Status</option>
                                 <option>Completed</option>
                                 <option>Inprogress</option>
@@ -70,7 +86,7 @@
                                     <th>Product Name</th>
                                     <th>Quantity</th>
                                     <th>Expired Date</th>
-                                    <th>Input Price($) </th>
+                                    <th>Output Price($) </th>
                                     <th class="text-end">Total Cost ($) </th>
                                     <th></th>
                                 </tr>
@@ -106,7 +122,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea name="InputDTOForm.Note" class="form-control"></textarea>
+                            <textarea name="OutputDTOForm.Note" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -142,8 +158,50 @@
 
 <script>
     $(document).ready(function () {
-        // Make the AJAX request to your API endpoint
         var jwtToken = getCookieValue('jwtToken');
+        $.ajax({
+            url: 'https://localhost:5000/api/Customer',
+            type: 'GET',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                if (jwtToken) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                }
+            },
+            success: function (data) {
+                // Clear existing options
+                $('#customerSelect').empty();
+                // Add the "Choose" option
+                $('#customerSelect').append($('<option>', {
+                    value: '',
+                    text: 'Choose'
+                }));
+
+                // Iterate through the customer data and add options
+                $.each(data, function (index, customer) {
+                    $('#customerSelect').append($('<option>', {
+                        value: customer.id,
+                        text: customer.customerName
+                    }));
+                });
+            },
+            error: function () {
+                console.log('Error fetching customers');
+            }
+        });
+        function getCookieValue(cookieName) {
+            var name = cookieName + '=';
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i].trim();
+                if (cookie.indexOf(name) === 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+        }
+        // Make the AJAX request to your API endpoint
         $.ajax({
             url: 'https://localhost:5000/api/Supplier',
             type: 'GET',
@@ -154,7 +212,6 @@
                 }
             },
             success: function (data) {
-                console.log(data)
                 // Clear existing options
                 $('#supplierSelect').empty();
                 // Add the "Choose" option
@@ -176,26 +233,6 @@
             }
         });
 
-        function getCookieValue(cookieName) {
-            var name = cookieName + '=';
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var cookieArray = decodedCookie.split(';');
-            for (var i = 0; i < cookieArray.length; i++) {
-                var cookie = cookieArray[i].trim();
-                if (cookie.indexOf(name) === 0) {
-                    return cookie.substring(name.length, cookie.length);
-                }
-            }
-            return null;
-        }
-
-        function updateSupplierSelectAvailability() {
-            // Check if there are any rows in the product table
-            var hasProductData = $('#productTableBody tr').length > 0;
-
-            // Enable or disable the customerSelect dropdown based on the product data
-            $('#supplierSelect').prop('disabled', hasProductData);
-        }
 
         // Handle supplier selection
         $('#supplierSelect').change(function () {
@@ -239,9 +276,61 @@
             var selectedProductId = $(this).val();
 
             if (selectedProductId !== '') {
+                // Make the AJAX request to get products by supplier ID
+                $.ajax({
+                    url: `https://localhost:5000/api/Input/GetInputByProductId/${selectedProductId}`,
+                    type: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        if (jwtToken) {
+                            xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                        }
+                    },
+                    success: function (data) {
+                        $('#inputSelect').empty();
+                        $('#inputSelect').append($('<option>', {
+                            value: '',
+                            text: 'Choose'
+                        }));
+                        $.each(data, function (index, input) {
+                            // Parse the inputDate using Date object
+                            var formattedDate = new Date(input.inputDate).toLocaleDateString('en-GB', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric'
+                            });
+
+                            $('#inputSelect').append($('<option>', {
+                                value: input.id,
+                                text: 'Date Input: ' + formattedDate + ' - Quantity In Stock: ' + input.quantityInStock
+                            }));
+                        });
+                    },
+                    error: function () {
+                        console.log('Error fetching input');
+                    }
+                });
+            } else {
+                $('#inputSelect').empty(); // Clear products if no supplier is selected
+            }
+        });
+        function updateCustomerSelectAvailability() {
+            // Check if there are any rows in the product table
+            var hasProductData = $('#productTableBody tr').length > 0;
+
+            // Enable or disable the customerSelect dropdown based on the product data
+            $('#customerSelect').prop('disabled', hasProductData);
+        }
+
+        // Handle input selection
+        $('#inputSelect').change(function () {
+            var selectedInputId = $(this).val();
+            var productId = $('#productSelect').val();
+
+            if (selectedInputId !== '') {
                 // Make the AJAX request to get product details
                 $.ajax({
-                    url: `https://localhost:5000/api/Product/${selectedProductId}`,
+                    url: `https://localhost:5000/api/Input/GetInputByProductIdAndInpuId/${selectedInputId}/${productId}`,
                     type: 'GET',
                     dataType: 'json',
                     beforeSend: function (xhr) {
@@ -251,34 +340,44 @@
                     },
                     success: function (product) {
                         // Add a new row to the table with the selected product details
+                        var formattedDate = new Date(product.expiredDate).toISOString().split('T')[0];
                         var newRow = `
-                                                        <tr data-product-id="${product.id}">
-                                                            <td class="productimgname">
-                                                                <a class="product-img">
-                                                                    <img src="/assets/img/product/product7.jpg" alt="product">
-                                                                </a>
-                                                                <a href="javascript:void(0);">${product.productName}</a>
-                                                            </td>
-                                                            <td>
-                                                                <input class="form-control quantity-input" type="number" value="1">
-                                                            </td>
-                                                            <td>
-                                                                <input class="form-control expired-input" type="date">
-                                                            </td>
-                                                            <td>
-                                                                <input class="form-control price-input" type="number" step="0.01" value="0.00">
-                                                            </td>
-                                                            <td class="text-end">0.00</td>
-                                                            <td>
-                                                                <a class="delete-set">
-                                                                    <img src="/assets/img/icons/delete.svg" alt="svg">
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    `;
-                        $('#productTableBody').append(newRow);
+                                                                                <tr data-product-id="${product.productId}">
+                                                                                <td class="productimgname">
+                                                                                    <a class="product-img">
+                                                                                        <img src="/assets/img/product/product7.jpg" alt="product">
+                                                                                    </a>
+                                                                                        <a href="javascript:void(0);">${product.productName}</a>
+                                                                                </td>
+                                                                                        <input type="hidden" id="inputId" name="InputId" value="${product.id}" />
+                                                                                <td>
+                                                                                    <input class="form-control quantity-input" type="number" value="1" min="1" max="${product.quantityInStock}">
+                                                                                </td>
+                                                                                <td>
+            <input class="form-control expired-input" type="date" value="${formattedDate}" readonly>
+                                                                                    </td>
+                                                                                <td>
+                                                                                    <input class="form-control price-input" type="number" step="0.01" value="${product.inputPrice * 0.15}">
+                                                                                </td>
+                                                                                <td class="text-end">0.00</td>
+                                                                                <td>
+                                                                                    <a class="delete-set">
+                                                                                        <img src="/assets/img/icons/delete.svg" alt="svg">
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        `;
+                        var $newRow = $(newRow);
+                        $('#productTableBody').append($newRow);
                         updateTotalCounts();
-                        updateSupplierSelectAvailability();
+
+                        // Calculate total cost for the newly added row and update the "text-end" cell
+                        var quantity = parseInt($newRow.find('.quantity-input').val());
+                        var price = parseFloat($newRow.find('.price-input').val());
+                        var totalCost = quantity * price;
+                        $newRow.find('.text-end').text(totalCost.toFixed(2));
+
+                        updateCustomerSelectAvailability();
                     },
                     error: function () {
                         console.log('Error fetching product details');
@@ -315,7 +414,8 @@
         $('#productTableBody').on('click', '.delete-set', function () {
             $(this).closest('tr').remove();
             updateTotalCounts();
-            updateSupplierSelectAvailability();
+
+            updateCustomerSelectAvailability();
         });
 
         function updateTotalCounts() {
@@ -363,14 +463,14 @@
             $('#productTableBody tr').each(function () {
                 var productId = $(this).data('product-id');
                 var quantity = parseInt($(this).find('.quantity-input').val());
-                var expiredDate = $(this).find('.expired-input').val();
                 var price = parseFloat($(this).find('.price-input').val());
+                var inputId = $(this).find('#inputId').val();
 
                 var product = {
                     ProductId: productId,
                     Quantity: quantity,
-                    InputPrice: price,
-                    ExpiredDate: expiredDate
+                    InputId: inputId,
+                    OutputPrice: price
                 };
 
                 products.push(product);
@@ -388,7 +488,7 @@
             getListOfProducts();
 
             // enable the customer select
-            $('#supplierSelect').prop('disabled', false);
+            $('#customerSelect').prop('disabled', false);
 
             // Now you can submit the form using regular form submission
             $('#inputForm').off('submit').submit();

@@ -88,6 +88,31 @@ namespace Client_InventoryManagement.Services
             }
         }
 
+        public async Task<T> PushDataGetContent<T>(string url, T value, string? jwt = null, string? accepttype = null)
+        {
+            url = _rootUrl + url;
+            HttpClient client = new HttpClient();
+            if (jwt != null)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+            }
+            var jsonStr = JsonSerializer.Serialize(value);
+            HttpContent content = new StringContent(jsonStr, Encoding.UTF8, "application/json");
+            HttpResponseMessage responseMessage = await client.PostAsync(url, content);
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                T responseContent = await responseMessage.Content.ReadFromJsonAsync<T>();
+                return responseContent;
+            }
+            else
+            {
+                // Handle other cases, throw an exception, etc.
+                throw new Exception("Request failed with status code: " + responseMessage.StatusCode);
+            }
+        }
+
+
         public async Task<string> GetDataGetString<T>(string url, string? jwt = null, string? accepttype = null)
         {
             // get token from cookie

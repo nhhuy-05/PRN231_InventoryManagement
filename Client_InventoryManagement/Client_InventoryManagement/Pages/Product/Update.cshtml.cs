@@ -12,7 +12,7 @@ namespace Client_InventoryManagement.Pages.Product
         [BindProperty]
         public ProductDTO productDTO { get; set; }
         
-        public async Task<IActionResult> OnGet( int id)
+        public async Task<IActionResult> OnGet(int id)
         {
             
             // get token from cookie
@@ -42,6 +42,7 @@ namespace Client_InventoryManagement.Pages.Product
 
                     ProductService productService = new ProductService();
                     productDTO = productService.GetProduct(id, jwtToken);
+                    ViewData["ProductId"] = id;
                     ViewData["Suppliers"] = suppliers;
                     ViewData["Units"] = units;
                     ViewData["Categories"] = cartegories;
@@ -56,7 +57,7 @@ namespace Client_InventoryManagement.Pages.Product
         }
 
 
-        public async Task<IActionResult> OnPost(ProductRequestDTO dto)
+        public async Task<IActionResult> OnPost(int productId,ProductRequestDTO dto)
         {
 
             if (dto == null)
@@ -70,15 +71,15 @@ namespace Client_InventoryManagement.Pages.Product
 
                 // get token from cookie
                 var jwtToken = Request.Cookies["jwtToken"];
-                var response = productService.UpdateProduct(productDTO.ProductId, dto, jwtToken);
+                var response = productService.UpdateProduct(productId, dto, jwtToken);
                 if (response == HttpStatusCode.OK)
                 {
-                    TempData["Message"] = "Add product successfully";
+                    TempData["Message"] = "Update product successfully!";
                     return RedirectToPage("ProductList");
                 }
                 else
                 {
-                    TempData["Message"] = "Add prouduct failed";
+                    TempData["Message"] = "Update Product Failed!";
                     return Page();
                 }
 
