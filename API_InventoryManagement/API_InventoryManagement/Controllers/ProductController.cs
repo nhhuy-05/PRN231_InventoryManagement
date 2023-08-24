@@ -81,5 +81,17 @@ namespace API_InventoryManagement.Controllers
             return Ok("Edit successfully");
 
         }
+
+        // get product by supplier id
+        [HttpGet("Supplier/{id}")]
+        public IActionResult GetProductBySupplierId(int id)
+        {
+            var products = _context.Products.Where(x => x.SupplierId == id).ToList();
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return Ok(products);
+        }
     }
 }

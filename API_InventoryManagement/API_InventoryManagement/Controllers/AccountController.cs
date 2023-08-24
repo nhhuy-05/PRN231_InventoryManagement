@@ -47,7 +47,8 @@ namespace API_InventoryManagement.Controllers
                 {
                     claims.Add(new Claim(ClaimTypes.Role, role));
                 }
-                claims.Add(new Claim(ClaimTypes.Name, user.FullName));
+                claims.Add(new Claim(ClaimTypes.Name, login.Email));
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, user.FullName));
                 // add all roles of user to claims
 
                 await _userManager.AddClaimsAsync(user, claims);
