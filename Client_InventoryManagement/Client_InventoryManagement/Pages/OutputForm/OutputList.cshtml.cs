@@ -1,21 +1,11 @@
-﻿using Client_InventoryManagement.DTO;
-using Client_InventoryManagement.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace Client_InventoryManagement.Pages
+namespace Client_InventoryManagement.Pages.OutputForm
 {
-    public class IndexModel : PageModel
+    public class OutputListModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
-
         public async Task<IActionResult> OnGet()
         {
             // get token from cookie
@@ -32,7 +22,7 @@ namespace Client_InventoryManagement.Pages
                 var token = new JwtSecurityToken(jwtToken);
                 var claims = token.Claims;
                 // check if user is admin
-                if (claims.ElementAt(0).Value == "ADMIN")
+                if (claims.ElementAt(0).Value == "ADMIN" || claims.ElementAt(0).Value == "STAFF")
                 {
                     return Page();
                 }

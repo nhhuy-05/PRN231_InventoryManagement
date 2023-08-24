@@ -29,7 +29,15 @@ namespace API_InventoryManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var inputs = _context.Inputs.ToList();
+            var inputs = _context.Inputs.Include(x => x.Supplier).Include(x => x.User).Select(x => new
+            {
+                InputId = x.Id,
+                SupplierName = x.Supplier.SupplierName,
+                DateInput = x.InputDate,
+                Status = x.Status,
+                Note = x.Note,
+                StaffName = x.User.FullName
+            }).ToList();
             return Ok(inputs);
         }
 

@@ -1,4 +1,6 @@
 ﻿@page
+@using System.IdentityModel.Tokens.Jwt;
+@using System.Security.Claims;
 @model Client_InventoryManagement.Pages.Error404Model
 @{
     Layout = null;
@@ -37,7 +39,25 @@
             <h1>404</h1>
             <h3 class="h2 mb-3"><i class="fas fa-exclamation-circle"></i> Oops! Page not found!</h3>
             <p class="h4 font-weight-normal">The page you requested was not found.</p>
-            <a href="/Index" class="btn btn-primary">Back to Home</a>
+            @{
+                var token = HttpContext.Request.Cookies["jwtToken"];
+                if (token != null)
+                {
+                    // decode token to get role in payload
+                    var tokenDecode = new JwtSecurityToken(token);
+                    var claims = tokenDecode.Claims;
+                    // check role
+                    var role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value;
+                    if (role == "ADMIN")
+                    {
+                        <a href="/Index" class="btn btn-primary">Back to Home</a>
+                    }
+                    else
+                    {
+                        <a href="/Account/Profile" class="btn btn-primary">Back to Home</a>
+                    }
+                }
+            }
         </div>
     </div>
 

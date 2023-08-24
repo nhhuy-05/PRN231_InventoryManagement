@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Security.Claims;
 
@@ -28,7 +29,15 @@ namespace API_InventoryManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var outputs = _context.Outputs.ToList();
+            var outputs = _context.Outputs.Include(x => x.Customer).Include(x => x.User).Select(x => new
+            {
+                OutputId = x.Id,
+                CustomerName = x.Customer.CustomerName,
+                DateOutput = x.OutputDate,
+                Status = x.Status,
+                Note = x.Note,
+                StaffName = x.User.FullName
+            }).ToList();
             return Ok(outputs);
         }
 
