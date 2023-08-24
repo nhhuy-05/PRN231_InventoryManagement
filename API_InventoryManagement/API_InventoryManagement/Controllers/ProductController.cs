@@ -4,6 +4,7 @@ using API_InventoryManagement.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_InventoryManagement.Controllers
 {
@@ -22,14 +23,24 @@ namespace API_InventoryManagement.Controllers
         [HttpGet]
         public IActionResult GetAllProduct()
         {
-            var products = _context.Products.ToList();
+            var products = _context.Products.Include(x=>x.Category).Include(x=>x.Unit).Include(x=>x.Supplier).ToList();
             if (products == null)
             {
                 return NotFound();
             }
             else
             {
-                return Ok(products);
+                return Ok(products.Select(x=> new ProductDTO
+                {
+                    ProductId=x.Id,
+                    ProductName=x.ProductName,
+                    Picture=x.Picture,
+                    CategoryName=x.Category.CategoryName,
+                    SupplierName=x.Supplier.SupplierName,
+                    UnitName=x.Unit.UnitName,
+                    Description=x.Description,
+
+                }));
             }
         }
         [HttpGet("{id}")]
