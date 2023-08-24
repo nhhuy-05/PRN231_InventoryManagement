@@ -11,6 +11,11 @@ namespace Client_InventoryManagement.Services
             var response = GetData<List<CustomerDTO>>("Customer", jwtToken).Result;
             return response;
         }
+        public CustomerDTO GetCustomer(int id, string jwtToken)
+        {
+            var respone = GetData<CustomerDTO>("Customer/" + id, jwtToken).Result;
+            return respone;
+        }
 
         public HttpStatusCode AddCustomer(CustomerRequestDTO customer, string jwtToken)
         {
@@ -18,9 +23,9 @@ namespace Client_InventoryManagement.Services
             return response;
         }
 
-        public HttpStatusCode UpdateCustomer(CustomerRequestDTO customer, string jwtToken)
+        public HttpStatusCode UpdateCustomer(int id, CustomerRequestDTO customer, string jwtToken)
         {
-            var response = PutData<CustomerRequestDTO>("Customer", customer, jwtToken).Result;
+            var response = PutData<CustomerRequestDTO>("Customer?id="+id, customer, jwtToken).Result;
             return response;
         }
     }

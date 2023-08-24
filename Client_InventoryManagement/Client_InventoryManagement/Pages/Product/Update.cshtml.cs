@@ -7,10 +7,14 @@ using System.Net;
 
 namespace Client_InventoryManagement.Pages.Product
 {
-    public class AddProductModel : PageModel
+    public class UpdateModel : PageModel
     {
-        public async Task<IActionResult> OnGet()
+        [BindProperty]
+        public ProductDTO productDTO { get; set; }
+        
+        public async Task<IActionResult> OnGet( int id)
         {
+            
             // get token from cookie
             var jwtToken = Request.Cookies["jwtToken"];
             // check if token is null or empty
@@ -30,11 +34,14 @@ namespace Client_InventoryManagement.Pages.Product
                     CategoryService categoryService = new CategoryService();
                     var cartegories = categoryService.GetCategories(jwtToken);
 
-                    UnitService unitService= new UnitService();
+                    UnitService unitService = new UnitService();
                     var units = unitService.GetAllUnits(jwtToken);
 
                     SupplierService supplierService = new SupplierService();
                     var suppliers = supplierService.GetAllSuppliers(jwtToken);
+
+                    ProductService productService = new ProductService();
+                    productDTO = productService.GetProduct(id, jwtToken);
                     ViewData["Suppliers"] = suppliers;
                     ViewData["Units"] = units;
                     ViewData["Categories"] = cartegories;
@@ -63,7 +70,7 @@ namespace Client_InventoryManagement.Pages.Product
 
                 // get token from cookie
                 var jwtToken = Request.Cookies["jwtToken"];
-                var response = productService.AddProduct(dto, jwtToken);
+                var response = productService.UpdateProduct(productDTO.ProductId, dto, jwtToken);
                 if (response == HttpStatusCode.OK)
                 {
                     TempData["Message"] = "Add product successfully";

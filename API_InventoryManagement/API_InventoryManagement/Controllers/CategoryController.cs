@@ -10,7 +10,7 @@ namespace API_InventoryManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+    //[Authorize(Roles = "ADMIN")]
     public class CategoryController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -52,10 +52,11 @@ namespace API_InventoryManagement.Controllers
 
         // PUT api/<CategoryController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] CategoryRequestDTO value)
         {
             var category = _context.Categories.Find(id);
-            category.CategoryName = value;
+            category.CategoryName = value.CategoryName;
+            category.Description= value.Description;
             _context.SaveChanges();
             return Ok(category);
         }
