@@ -34,6 +34,18 @@ namespace Client_InventoryManagement.Pages
                 // check if user is admin
                 if (claims.ElementAt(0).Value == "ADMIN")
                 {
+                    ReportService reportService = new ReportService();
+                    var inputPriceAndNumberOfInput = await reportService.GetInputPriceAndNumberOfInput(jwtToken);
+                    var outputPriceAndNumberOfOutput = await reportService.GetOutputPriceAndNumberOfOutput(jwtToken);
+                    var numberOfCustomerAndSupplier = await reportService.GetNumberOfCustomerAndSupplier(jwtToken);
+                    var numberOfProduct = await reportService.GetNumberOfProduct(jwtToken);
+                    ViewData["TotalInputPrice"] = inputPriceAndNumberOfInput.TotalInputPrice;
+                    ViewData["NumberOfInputsThisMonth"] = inputPriceAndNumberOfInput.NumberOfInputsThisMonth;
+                    ViewData["TotalOutputPrice"] = outputPriceAndNumberOfOutput.TotalOutputPrice;
+                    ViewData["NumberOfOutputsThisMonth"] = outputPriceAndNumberOfOutput.NumberOfOutputsThisMonth;
+                    ViewData["NumberOfCustomers"] = numberOfCustomerAndSupplier.NumberOfCustomers;
+                    ViewData["NumberOfSuppliers"] = numberOfCustomerAndSupplier.NumberOfSuppliers;
+                    //ViewData["NumberOfProducts"] = numberOfProduct.NumberOfProducts;
                     return Page();
                 }
                 else

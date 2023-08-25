@@ -60,6 +60,5 @@ namespace API_InventoryManagement.Controllers
             _context.SaveChanges();
             return Ok(inputDetail);
         }
-
     }
 }
