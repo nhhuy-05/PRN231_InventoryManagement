@@ -12,7 +12,7 @@ namespace API_InventoryManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN,STAFF")]
+    //[Authorize(Roles = "ADMIN,STAFF")]
     public class InputController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -139,7 +139,5 @@ namespace API_InventoryManagement.Controllers
                 }).FirstOrDefault();
             return Ok(input);
         }
-
-
     }
 }

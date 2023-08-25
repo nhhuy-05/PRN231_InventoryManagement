@@ -24,7 +24,7 @@
                     <span><img src="~/assets/img/icons/dash1.svg" alt="img"></span>
                 </div>
                 <div class="dash-widgetcontent">
-                    <h5>$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
+                    <h5>$<span id="totalInputPrice" class="counters" data-count="@ViewBag.TotalInputPrice">@ViewBag.TotalInputPrice</span></h5>
                     <h6>Total Input Money</h6>
                 </div>
             </div>
@@ -35,37 +35,37 @@
                     <span><img src="~/assets/img/icons/dash2.svg" alt="img"></span>
                 </div>
                 <div class="dash-widgetcontent">
-                    <h5>$<span class="counters" data-count="4385.00">$4,385.00</span></h5>
+                    <h5>$<span id="totalOutputPrice" class="counters" data-count="@ViewBag.TotalOutputPrice">@ViewBag.TotalOutputPrice</span></h5>
                     <h6>Total Output Money</h6>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-12">
-            <div class="dash-widget dash2">
-                <div class="dash-widgetimg">
-                    <span><img src="~/assets/img/icons/dash3.svg" alt="img"></span>
-                </div>
-                <div class="dash-widgetcontent">
-                    <h5>$<span class="counters" data-count="385656.50">385,656.50</span></h5>
-                    <h6>Reduced Input Money</h6>
-                </div>
-            </div>
+        @*<div class="col-lg-3 col-sm-6 col-12">
+        <div class="dash-widget dash2">
+        <div class="dash-widgetimg">
+        <span><img src="~/assets/img/icons/dash3.svg" alt="img"></span>
+        </div>
+        <div class="dash-widgetcontent">
+        <h5>$<span class="counters" data-count="385656.50">385,656.50</span></h5>
+        <h6>Reduced Input Money</h6>
+        </div>
+        </div>
         </div>
         <div class="col-lg-3 col-sm-6 col-12">
-            <div class="dash-widget dash3">
-                <div class="dash-widgetimg">
-                    <span><img src="~/assets/img/icons/dash4.svg" alt="img"></span>
-                </div>
-                <div class="dash-widgetcontent">
-                    <h5>$<span class="counters" data-count="40000.00">400.00</span></h5>
-                    <h6>Increased Output Money</h6>
-                </div>
-            </div>
+        <div class="dash-widget dash3">
+        <div class="dash-widgetimg">
+        <span><img src="~/assets/img/icons/dash4.svg" alt="img"></span>
         </div>
+        <div class="dash-widgetcontent">
+        <h5>$<span class="counters" data-count="40000.00">400.00</span></h5>
+        <h6>Increased Output Money</h6>
+        </div>
+        </div>
+        </div>*@
         <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count">
                 <div class="dash-counts">
-                    <h4>100</h4>
+                    <h4>@ViewBag.NumberOfCustomers</h4>
                     <h5>Customers</h5>
                 </div>
                 <div class="dash-imgs">
@@ -76,7 +76,7 @@
         <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das1">
                 <div class="dash-counts">
-                    <h4>100</h4>
+                    <h4>@ViewBag.NumberOfSuppliers</h4>
                     <h5>Suppliers</h5>
                 </div>
                 <div class="dash-imgs">
@@ -87,7 +87,7 @@
         <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das2">
                 <div class="dash-counts">
-                    <h4>100</h4>
+                    <h4>@ViewBag.NumberOfInputsThisMonth</h4>
                     <h5>Input Invoice</h5>
                 </div>
                 <div class="dash-imgs">
@@ -98,7 +98,7 @@
         <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das3">
                 <div class="dash-counts">
-                    <h4>105</h4>
+                    <h4>@ViewBag.NumberOfOutputsThisMonth</h4>
                     <h5>Output Invoice</h5>
                 </div>
                 <div class="dash-imgs">
@@ -109,47 +109,47 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-7 col-sm-12 col-12 d-flex">
-            <div class="card flex-fill">
-                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">Input & Output</h5>
-                    <div class="graph-sets">
-                        <ul>
-                            <li>
-                                <span>Input</span>
-                            </li>
-                            <li>
-                                <span>Output</span>
-                            </li>
-                        </ul>
-                        <div class="dropdown">
-                            <button class="btn btn-white btn-sm dropdown-toggle" type="button"
-                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                2022 <img src="~/assets/img/icons/dropdown.svg" alt="img" class="ms-2">
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item">2022</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item">2021</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="dropdown-item">2020</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div id="sales_charts"></div>
-                </div>
-            </div>
+        @*<div class="col-lg-7 col-sm-12 col-12 d-flex">
+        <div class="card flex-fill">
+        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Input & Output</h5>
+        <div class="graph-sets">
+        <ul>
+        <li>
+        <span>Input</span>
+        </li>
+        <li>
+        <span>Output</span>
+        </li>
+        </ul>
+        <div class="dropdown">
+        <button class="btn btn-white btn-sm dropdown-toggle" type="button"
+        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        2022 <img src="~/assets/img/icons/dropdown.svg" alt="img" class="ms-2">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li>
+        <a href="javascript:void(0);" class="dropdown-item">2022</a>
+        </li>
+        <li>
+        <a href="javascript:void(0);" class="dropdown-item">2021</a>
+        </li>
+        <li>
+        <a href="javascript:void(0);" class="dropdown-item">2020</a>
+        </li>
+        </ul>
         </div>
-        <div class="col-lg-5 col-sm-12 col-12 d-flex">
+        </div>
+        </div>
+        <div class="card-body">
+        <div id="sales_charts"></div>
+        </div>
+        </div>
+        </div>*@
+        <div class="col-lg-6 col-sm-12 col-12 d-flex">
             <div class="card flex-fill">
                 <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Recently Added Products</h4>
+                    <h4 class="card-title mb-0">Recently Imported Products</h4>
                     <div class="dropdown">
                         <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"
                            class="dropset">
@@ -157,10 +157,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li>
-                                <a href="productlist.html" class="dropdown-item">Product List</a>
+                                <a href="/Product/ProductList" class="dropdown-item">Product List</a>
                             </li>
                             <li>
-                                <a href="addproduct.html" class="dropdown-item">Product Add</a>
+                                <a href="/Product/AddProduct" class="dropdown-item">Product Add</a>
                             </li>
                         </ul>
                     </div>
@@ -180,9 +180,9 @@
                                     <td>1</td>
                                     <td class="productimgname">
                                         <a href="productlist.html" class="product-img">
-                                            <img src="~/assets/img/product/product22.jpg" alt="product">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
                                         </a>
-                                        <a href="productlist.html">Apple Earpods</a>
+                                        <a href="productlist.html">Chai 2</a>
                                     </td>
                                     <td>$891.2</td>
                                 </tr>
@@ -190,9 +190,9 @@
                                     <td>2</td>
                                     <td class="productimgname">
                                         <a href="productlist.html" class="product-img">
-                                            <img src="~/assets/img/product/product23.jpg" alt="product">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
                                         </a>
-                                        <a href="productlist.html">iPhone 11</a>
+                                        <a href="productlist.html">Chang</a>
                                     </td>
                                     <td>$668.51</td>
                                 </tr>
@@ -200,9 +200,9 @@
                                     <td>3</td>
                                     <td class="productimgname">
                                         <a href="productlist.html" class="product-img">
-                                            <img src="~/assets/img/product/product24.jpg" alt="product">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
                                         </a>
-                                        <a href="productlist.html">samsung</a>
+                                        <a href="productlist.html">Aniseed Syrup</a>
                                     </td>
                                     <td>$522.29</td>
                                 </tr>
@@ -210,9 +210,9 @@
                                     <td>4</td>
                                     <td class="productimgname">
                                         <a href="productlist.html" class="product-img">
-                                            <img src="~/assets/img/product/product6.jpg" alt="product">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
                                         </a>
-                                        <a href="productlist.html">Macbook Pro</a>
+                                        <a href="productlist.html">Chef Anton's Cajun Seasoning</a>
                                     </td>
                                     <td>$291.01</td>
                                 </tr>
@@ -222,6 +222,91 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-6 col-sm-12 col-12 d-flex">
+            <div class="card flex-fill">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Recently Exported Products</h4>
+                    <div class="dropdown">
+                        <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"
+                           class="dropset">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a href="/Product/ProductList" class="dropdown-item">Product List</a>
+                            </li>
+                            <li>
+                                <a href="/Product/AddProduct" class="dropdown-item">Product Add</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive dataview">
+                        <table class="table datatable ">
+                            <thead>
+                                <tr>
+                                    <th>Sno</th>
+                                    <th>Products</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="productimgname">
+                                        <a href="productlist.html" class="product-img">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
+                                        </a>
+                                        <a href="productlist.html">
+                                            Chai 2
+                                        </a>
+                                    </td>
+                                    <td>$891.2</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="productimgname">
+                                        <a href="productlist.html" class="product-img">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
+                                        </a>
+                                        <a href="productlist.html">
+                                            Aniseed Syrup
+                                        </a>
+                                    </td>
+                                    <td>$668.51</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="productimgname">
+                                        <a href="productlist.html" class="product-img">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
+                                        </a>
+                                        <a href="productlist.html">
+                                            Chef Anton's Gumbo Mix
+                                        </a>
+                                    </td>
+                                    <td>$522.29</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td class="productimgname">
+                                        <a href="productlist.html" class="product-img">
+                                            <img src="~/assets/img/product/product2.jpg" alt="product">
+                                        </a>
+                                        <a href="productlist.html">
+                                            Chef Anton's Cajun Seasoning
+                                        </a>
+                                    </td>
+                                    <td>$291.01</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="card mb-0">
         <div class="card-body">
@@ -231,9 +316,8 @@
                     <thead>
                         <tr>
                             <th>SNo</th>
-                            <th>Product Code</th>
+                            <th>Product Id</th>
                             <th>Product Name</th>
-                            <th>Brand Name</th>
                             <th>Category Name</th>
                             <th>Expiry Date</th>
                         </tr>
@@ -241,54 +325,62 @@
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td><a href="javascript:void(0);">IT0001</a></td>
+                            <td><a href="javascript:void(0);">65</a></td>
                             <td class="productimgname">
                                 <a class="product-img" href="productlist.html">
-                                    <img src="~/assets/img/product/product2.jpg" alt="product">
+                                    <img src="~/assets/img/product/product1.jpg" alt="product">
                                 </a>
-                                <a href="productlist.html">Orange</a>
+                                <a href="productlist.html">Chai 2</a>
                             </td>
-                            <td>N/D</td>
-                            <td>Fruits</td>
+                            <td>
+                                Fruit 1
+                            </td>
                             <td>12-12-2022</td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><a href="javascript:void(0);">IT0002</a></td>
+                            <td><a href="javascript:void(0);">70</a></td>
                             <td class="productimgname">
                                 <a class="product-img" href="productlist.html">
-                                    <img src="~/assets/img/product/product3.jpg" alt="product">
+                                    <img src="~/assets/img/product/product1.jpg" alt="product">
                                 </a>
-                                <a href="productlist.html">Pineapple</a>
+                                <a href="productlist.html">
+                                    Aniseed Syrup
+                                </a>
                             </td>
-                            <td>N/D</td>
-                            <td>Fruits</td>
+                            <td>
+                                Fruit 1
+                            </td>
                             <td>25-11-2022</td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><a href="javascript:void(0);">IT0003</a></td>
+                            <td><a href="javascript:void(0);">71</a></td>
                             <td class="productimgname">
                                 <a class="product-img" href="productlist.html">
-                                    <img src="~/assets/img/product/product4.jpg" alt="product">
+                                    <img src="~/assets/img/product/product1.jpg" alt="product">
                                 </a>
-                                <a href="productlist.html">Stawberry</a>
+                                <a href="productlist.html">Chef Anton's Cajun Seasoning</a>
                             </td>
-                            <td>N/D</td>
-                            <td>Fruits</td>
+                            <td>
+                                Fruit 1
+                            </td>
                             <td>19-11-2022</td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><a href="javascript:void(0);">IT0004</a></td>
+                            <td><a href="javascript:void(0);">73</a></td>
                             <td class="productimgname">
                                 <a class="product-img" href="productlist.html">
-                                    <img src="~/assets/img/product/product5.jpg" alt="product">
+                                    <img src="~/assets/img/product/product1.jpg" alt="product">
                                 </a>
-                                <a href="productlist.html">Avocat</a>
+                                <a href="productlist.html">
+                                    Grandma's Boysenberry Spread
+                                </a>
                             </td>
-                            <td>N/D</td>
-                            <td>Fruits</td>
+                            <td>
+                                Fruit 1
+                            </td>
                             <td>20-11-2022</td>
                         </tr>
                     </tbody>
@@ -313,3 +405,61 @@
 <script src="~/assets/plugins/apexchart/chart-data.js"></script>
 
 <script src="~/assets/js/script.js"></script>
+
+<script>
+    //$(document).ready(function () {
+    //    function getCookieValue(cookieName) {
+    //        var name = cookieName + '=';
+    //        var decodedCookie = decodeURIComponent(document.cookie);
+    //        var cookieArray = decodedCookie.split(';');
+    //        for (var i = 0; i < cookieArray.length; i++) {
+    //            var cookie = cookieArray[i].trim();
+    //            if (cookie.indexOf(name) === 0) {
+    //                return cookie.substring(name.length, cookie.length);
+    //            }
+    //        }
+    //        return null;
+    //    }
+    //    var jwtToken = getCookieValue('jwtToken');
+
+    //    // Make AJAX requests to get data from APIs
+    //    $.ajax({
+    //        url: 'https://localhost:5000/api/Report/GetInputPriceAndNumberOfInput',
+    //        type: 'GET',
+    //        dataType: 'json',
+    //        beforeSend: function (xhr) {
+    //            if (jwtToken) {
+    //                xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+    //            }
+    //        },
+    //        success: function (data) {
+    //            console.log(data);
+    //            var totalInputPrice = parseFloat(data.totalInputPrice);
+    //            $('#totalInputPrice').textContent(totalInputPrice);
+    //        },
+    //        error: function () {
+    //            console.log('Error fetching input summary');
+    //        }
+    //    });
+
+    //    $.ajax({
+    //        url: 'https://localhost:5000/api/Report/GetOutputPriceAndNumberOfOutput',
+    //        type: 'GET',
+    //        dataType: 'json',
+    //        beforeSend: function (xhr) {
+    //            if (jwtToken) {
+    //                xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+    //            }
+    //        },
+    //        success: function (data) {
+    //            console.log(data);
+    //            var totalOutputPrice = parseFloat(data.totalOutputPrice);
+    //            $('#totalOutputPrice').textContent(totalOutputPrice);
+    //        },
+    //        error: function () {
+    //            console.log('Error fetching output summary');
+    //        }
+    //    });
+
+    //});
+</script>
