@@ -73,9 +73,10 @@ namespace Client_InventoryManagement.Pages.OutputForm
                 else
                 {
                     TempData["Message"] = "Add output failed";
+                    return Page();
                 }
             }
-            return Page();
+            return RedirectToPage("/OutputForm/OutputList");
         }
     }
 }

@@ -37,7 +37,7 @@ namespace API_InventoryManagement.Controllers
                 Status = x.Status,
                 Note = x.Note,
                 StaffName = x.User.FullName
-            }).ToList();
+            }).OrderByDescending(x => x.DateOutput).ToList();
             return Ok(outputs);
         }
 

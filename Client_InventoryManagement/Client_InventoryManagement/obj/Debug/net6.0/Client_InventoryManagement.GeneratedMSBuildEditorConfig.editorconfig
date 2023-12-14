@@ -15,20 +15,124 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Admin\Desktop\Old\FPT_Course\8_Summer_2023\PRN221_Retake\Project\PRN231_InventoryManagement\Client_InventoryManagement\Client_InventoryManagement
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Category/AddCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcQWRkQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Category/CategoryList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcQ2F0ZWdvcnlMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Category/UpdateCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlcVXBkYXRlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Customer/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQWRkQ3VzdG9tZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Customer/CustomerList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQ3VzdG9tZXJMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Customer/UpdateCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVXBkYXRlQ3VzdG9tZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Error404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3I0MDQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/InputForm/AddInput.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5wdXRGb3JtXEFkZElucHV0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/InputForm/InputDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5wdXRGb3JtXElucHV0RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/InputForm/InputList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5wdXRGb3JtXElucHV0TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/OutputForm/AddOutput.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3V0cHV0Rm9ybVxBZGRPdXRwdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/OutputForm/OutputDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3V0cHV0Rm9ybVxPdXRwdXREZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/OutputForm/OutputList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3V0cHV0Rm9ybVxPdXRwdXRMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Product/AddProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxBZGRQcm9kdWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Product/ProductList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxQcm9kdWN0TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Product/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Supplier/AddSupplier.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJcQWRkU3VwcGxpZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Supplier/SupplierList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJcU3VwcGxpZXJMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Supplier/UpdateSupplier.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcGxpZXJcVXBkYXRlU3VwcGxpZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Unit/AddUnit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdFxBZGRVbml0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Unit/UnitList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdFxVbml0TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/Unit/UpdateUnit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdFxVcGRhdGVVbml0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/Desktop/Old/FPT_Course/8_Summer_2023/PRN221_Retake/Project/PRN231_InventoryManagement/Client_InventoryManagement/Client_InventoryManagement/Pages/_ViewImports.cshtml]
