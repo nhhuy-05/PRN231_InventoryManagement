@@ -77,7 +77,7 @@ namespace Client_InventoryManagement.Pages.InputForm
                     return Page();
                 }
             }         
-            return Page();
+            return RedirectToPage("/InputForm/InputList");
         }
     }
 }

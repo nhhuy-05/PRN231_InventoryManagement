@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "bxvWPv0q6iD31yn3rCRq0Vf4ictw1ah1sAFmLxFDPOtg5wd8y/7pBxA0rvuuNXqriDSMCU9it0n4kg0DrSZ3TA==",
+  "dgSpecHash": "bE9ZK5J1jECxIClR9QOkJkVxSVTwch4zYzw4p0eLfDfFIdR4F4MTGHmI2SlmIumR6GNQtUevKVGISKjyUxYHMg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Admin\\Desktop\\Old\\FPT_Course\\8_Summer_2023\\PRN221_Retake\\Project\\PRN231_InventoryManagement\\Client_InventoryManagement\\Client_InventoryManagement\\Client_InventoryManagement.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.32.1\\microsoft.identitymodel.abstractions.6.32.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.32.1\\microsoft.identitymodel.jsonwebtokens.6.32.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.logging\\6.32.1\\microsoft.identitymodel.logging.6.32.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.32.1\\microsoft.identitymodel.tokens.6.32.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.32.1\\system.identitymodel.tokens.jwt.6.32.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.text.encodings.web\\4.7.2\\system.text.encodings.web.4.7.2.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
+  ],
   "logs": []
 }

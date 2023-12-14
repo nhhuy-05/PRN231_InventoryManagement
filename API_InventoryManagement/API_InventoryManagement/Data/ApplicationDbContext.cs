@@ -122,7 +122,7 @@ namespace API_InventoryManagement.Data
             {
                 entity.ToTable("OutputDetails");
                 // set primary key
-                entity.HasKey(e => new { e.OutputId, e.ProductId });
+                entity.HasKey(e => new { e.OutputId, e.ProductId , e.InputId});
                 entity.Property(e => e.Quantity).HasColumnType("int").IsRequired();
                 entity.Property(e => e.OutputPrice).HasColumnType("decimal(18,2)");
                 entity.HasOne(d => d.Output)
